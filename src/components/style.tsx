@@ -5,7 +5,10 @@ export const useStyle = makeStyles({
     display: "flex",
     flexDirection: "row",
     flexWrap: "wrap",
-    // NOTE: VirtuosoGrid doesn't support "gap" yet: https://github.com/petyosi/react-virtuoso/issues/363
+    /**
+     * NOTE: VirtuosoGrid doesn't support "gap" yet.
+     * @see https://github.com/petyosi/react-virtuoso/issues/363
+     */
   },
   item: {
     flex: 1,

@@ -15,12 +15,16 @@ const generate = (prefix: any) => {
   } as User;
 };
 
-const list = Array.from({ length: 100 }, (_, no) => generate(no));
+const list = Array.from({ length: 30 }, (_, no) => generate(no));
 
 export const Grid = () => {
   const styles = useStyle();
   return (
     <VirtuosoGrid
+      /**
+       * VirtuosoGrid doesn't support components.Header / components.Footer yet.
+       * @see https://github.com/petyosi/react-virtuoso/issues/197
+       */
       useWindowScroll
       style={{ overflow: "hidden" }}
       listClassName={styles.list}

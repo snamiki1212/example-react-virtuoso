@@ -15,27 +15,44 @@ const generate = (prefix: any) => {
   } as User;
 };
 
-const list = Array.from({ length: 30 }, (_, no) => generate(no));
+const users = Array.from({ length: 30 }, (_, no) => generate(no));
 
 export const Grid = () => {
   const styles = useStyle();
+  const [list, setList] = React.useState(users);
+  const [isReachedEnd, setIsReachedEnd] = React.useState(false);
+
+  const load = () => {
+    if (isReachedEnd) return;
+    setList((prev) => [...prev, ...users]);
+    setIsReachedEnd(true);
+  };
+
+  const endReached = () => {
+    setTimeout(() => load(), 1_000);
+  };
+
   return (
-    <VirtuosoGrid
-      /**
-       * VirtuosoGrid doesn't support components.Header / components.Footer yet.
-       * @see https://github.com/petyosi/react-virtuoso/issues/197
-       */
-      useWindowScroll
-      style={{ overflow: "hidden" }}
-      listClassName={styles.list}
-      itemClassName={styles.item}
-      totalCount={list.length}
-      itemContent={(idx) => (
-        <div className={styles.itemWrapper}>
-          <Item item={list[idx]} />
-        </div>
-      )}
-    />
+    <>
+      <VirtuosoGrid
+        /**
+         * VirtuosoGrid doesn't support components.Header / components.Footer yet.
+         * @see https://github.com/petyosi/react-virtuoso/issues/197
+         */
+        useWindowScroll
+        style={{ overflow: "hidden" }}
+        listClassName={styles.list}
+        itemClassName={styles.item}
+        totalCount={list.length}
+        itemContent={(idx) => (
+          <div className={styles.itemWrapper}>
+            <Item item={list[idx]} />
+          </div>
+        )}
+        endReached={endReached}
+      />
+      {!isReachedEnd && <div>is loading...</div>}
+    </>
   );
 };
 

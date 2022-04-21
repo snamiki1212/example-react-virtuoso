@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Grid } from "./components/grid";
+import { InfiniteScroll } from "./components/InfiniteScroll";
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
     >
       <div style={{ height: "100px", background: "lightblue" }}>===start</div>
       <div>
-        <Grid />
+        <InfiniteScroll />
       </div>
       <div style={{ height: "100px", background: "lightblue" }}>===end</div>
     </div>

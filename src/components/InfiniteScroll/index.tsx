@@ -5,7 +5,7 @@ import { v4 as uuid } from "uuid";
 
 import { useStyle } from "./style";
 
-export const Grid = () => {
+export const InfiniteScroll = () => {
   const styles = useStyle();
   const [list, setList] = React.useState(users);
   const [isReachedEnd, setIsReachedEnd] = React.useState(false);

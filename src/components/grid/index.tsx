@@ -5,18 +5,6 @@ import { v4 as uuid } from "uuid";
 
 import { useStyle } from "./style";
 
-type User = { id: string; name: string };
-
-const generate = (prefix: any) => {
-  const id = uuid();
-  return {
-    id,
-    name: `${prefix}`,
-  } as User;
-};
-
-const users = Array.from({ length: 30 }, (_, no) => generate(no));
-
 export const Grid = () => {
   const styles = useStyle();
   const [list, setList] = React.useState(users);
@@ -63,3 +51,18 @@ const Item: React.FC<{ item: User }> = ({ item }) => {
     </div>
   );
 };
+
+/************************
+ * Test Data
+ ************************/
+type User = { id: string; name: string };
+
+const generate = (prefix: any) => {
+  const id = uuid();
+  return {
+    id,
+    name: `${prefix}`,
+  } as User;
+};
+
+const users = Array.from({ length: 30 }, (_, no) => generate(no));

@@ -21,19 +21,23 @@ export const Grid = () => {
   const styles = useStyle();
   return (
     <VirtuosoGrid
-      style={{ height: "600px" }}
-      // className={styles.virtuoso}
+      useWindowScroll
+      style={{ overflow: "hidden" }}
       listClassName={styles.list}
       itemClassName={styles.item}
       totalCount={list.length}
-      itemContent={(idx) => <Item item={list[idx]} />}
+      itemContent={(idx) => (
+        <div className={styles.itemWrapper}>
+          <Item item={list[idx]} />
+        </div>
+      )}
     />
   );
 };
 
 const Item: React.FC<{ item: User }> = ({ item }) => {
   return (
-    <div style={{ height: "100px", width: "100px", background: "lightgray" }}>
+    <div style={{ height: "285px", width: "285px", background: "lightgray" }}>
       {item.name} / {item.id}
     </div>
   );

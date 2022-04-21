@@ -1,16 +1,16 @@
 import { makeStyles } from "@mui/styles";
 
 export const useStyle = makeStyles({
-  virtuoso: {
-    height: "100px",
-  },
   list: {
     display: "flex",
     flexDirection: "row",
     flexWrap: "wrap",
-    gap: "1rem",
+    // NOTE: VirtuosoGrid doesn't support "gap" yet: https://github.com/petyosi/react-virtuoso/issues/363
   },
   item: {
     flex: 1,
+  },
+  itemWrapper: {
+    padding: "1rem",
   },
 });

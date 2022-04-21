@@ -12,11 +12,11 @@ function App() {
         flexDirection: "column",
       }}
     >
-      <div>===start</div>
+      <div style={{ height: "100px", background: "lightblue" }}>===start</div>
       <div>
         <Grid />
       </div>
-      <div>===end</div>
+      <div style={{ height: "100px", background: "lightblue" }}>===end</div>
     </div>
   );
 }

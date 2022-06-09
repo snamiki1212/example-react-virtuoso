@@ -6,6 +6,9 @@ import _ from "lodash";
 
 import { useStyle } from "./style";
 
+const EACH_USER_NUM = 100;
+const MAX_DUMMY_NUM = 200;
+
 export const InfiniteScroll = () => {
   const styles = useStyle();
   const [list, setList] = React.useState(users);
@@ -15,7 +18,7 @@ export const InfiniteScroll = () => {
   const load = () => {
     if (isReachedEnd) return;
     setList((prev) => [...prev, ...users]);
-    if (list.length > 10000) setIsReachedEnd(true);
+    if (list.length > MAX_DUMMY_NUM) setIsReachedEnd(true);
   };
 
   const endReached = () => {
@@ -26,17 +29,11 @@ export const InfiniteScroll = () => {
     setVList(_.chunk(list, 4));
   }, [list]);
 
+  console.log("@@", { list });
   return (
     <>
       <Virtuoso
-        /**
-         * VirtuosoGrid doesn't support components.Header / components.Footer yet.
-         * @see https://github.com/petyosi/react-virtuoso/issues/197
-         */
-        useWindowScroll
-        style={{ overflow: "hidden" }}
-        // listClassName={styles.list}
-        // itemClassName={styles.item}
+        style={{ height: "800px" }}
         totalCount={vList.length}
         itemContent={(idx) => (
           <div className={styles.itemWrapper}>
@@ -54,7 +51,7 @@ const Row: React.FC<{ list: User[] }> = ({ list }) => {
   return (
     <div style={{ display: "flex" }}>
       {list.map((item) => (
-        <Item item={item} />
+        <Item item={item} key={item.id} />
       ))}
     </div>
   );
@@ -82,4 +79,4 @@ const generate = (prefix: any) => {
   } as User;
 };
 
-const users = Array.from({ length: 100 }, (_, no) => generate(no));
+const users = Array.from({ length: EACH_USER_NUM }, (_, no) => generate(no));

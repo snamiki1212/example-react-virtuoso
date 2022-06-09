@@ -34,7 +34,9 @@ function App() {
       </div>
       <Stack direction="row" flex={1}>
         <Stack style={{ background: "black", width: "50px" }}></Stack>
-        <Stack flex="1">{render()}</Stack>
+        <Stack flex="1">
+          <Stack>{render()}</Stack>
+        </Stack>
       </Stack>
       <div style={{ height: "100px", background: "lightblue" }}>===end</div>
     </div>
